@@ -1,0 +1,15 @@
+[Unit]
+Description=VNC Server for X11
+##Wants=syslog.target network-online.target
+##optional for better performance
+
+[Service]
+ExecStart=/usr/bin/x11vnc -display :0 -auth guess -rfbauth /etc/vnc/passwd -shared -forever
+ExecStop=/usr/bin/x11vnc -R stop
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
+08:10  18:14
